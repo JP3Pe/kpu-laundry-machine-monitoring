@@ -2,3 +2,39 @@ html {
     background-color: black;
     color: white;
 }
+
+header {
+    margin-top: 50px;
+    margin-bottom: 100px;
+    text-align: center;
+    font-size: larger;
+}
+
+main {
+
+}
+
+#user-list {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.user {
+    text-align: center;
+}
+
+.user-phone-number-container, .user-time-container {
+    margin-top: 10%;
+    margin-bottom: 10%;
+}
+
+.user-phone-number {
+    margin: 0;
+}
+
+.user-time {
+    margin: 0;
+}

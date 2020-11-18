@@ -1,13 +1,13 @@
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="300" height="300" viewBox="0 0 300 300">
   <defs>
     <clipPath id="clip-path">
-      <rect id="Rectangle_1" data-name="Rectangle 1" width="300" height="300" rx="15" transform="translate(706 313)" fill="#fff" stroke="#707070" stroke-width="1"/>
+      <rect id="Rectangle_1" data-name="Rectangle 1" width="300" height="300" rx="15" transform="translate(386 313)" fill="#fff" stroke="#707070" stroke-width="1"/>
     </clipPath>
   </defs>
-  <g id="Mask_Group_2" data-name="Mask Group 2" transform="translate(-706 -313)" clip-path="url(#clip-path)">
-    <g id="wb_sunny-white-18dp" transform="translate(706 313)">
-      <path id="Path_5" data-name="Path 5" d="M0,0H300V300H0Z" fill="none"/>
-      <path id="Path_6" data-name="Path 6" d="M84.5,60.5,62,38.125,44.375,55.75,66.75,78.125ZM50,131.25H12.5v25H50ZM162.5,6.875h-25V43.75h25V6.875ZM255.625,55.75,238,38.125,215.625,60.5,233.25,78.125ZM215.5,227l22.375,22.5L255.5,231.875,233,209.5,215.5,227ZM250,131.25v25h37.5v-25ZM150,68.75a75,75,0,1,0,75,75A75.059,75.059,0,0,0,150,68.75ZM137.5,280.625h25V243.75h-25ZM44.375,231.75,62,249.375l22.375-22.5L66.75,209.25Z" fill="#fff"/>
+  <g id="Mask_Group_3" data-name="Mask Group 3" transform="translate(-386 -313)" clip-path="url(#clip-path)">
+    <g id="local_laundry_service-white-18dp" transform="translate(386 313)">
+      <path id="Path_7" data-name="Path 7" d="M0,0H300V300H0Z" fill="none"/>
+      <path id="Path_8" data-name="Path 8" d="M114.625,210.375a50.028,50.028,0,0,0,70.75-70.75ZM225,25.125,75,25A24.914,24.914,0,0,0,50,50V250a24.914,24.914,0,0,0,25,25H225a24.914,24.914,0,0,0,25-25V50A24.808,24.808,0,0,0,225,25.125ZM125,50a12.5,12.5,0,1,1-12.5,12.5A12.537,12.537,0,0,1,125,50ZM87.5,50A12.5,12.5,0,1,1,75,62.5,12.537,12.537,0,0,1,87.5,50ZM150,250a75,75,0,1,1,75-75A75.059,75.059,0,0,1,150,250Z" fill="#fff"/>
     </g>
   </g>
 </svg>
