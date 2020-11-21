@@ -16,4 +16,20 @@
       <Folder Include="wwwroot\js" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Compile Remove="resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="resources\**" />
+    </ItemGroup>
+
 </Project>
