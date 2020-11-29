@@ -12,8 +12,9 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Models" />
+      <Folder Include="Views\Student" />
       <Folder Include="wwwroot\js" />
+      <Folder Include="wwwroot\lib" />
     </ItemGroup>
 
     <ItemGroup>
@@ -30,6 +31,10 @@
 
     <ItemGroup>
       <Content Remove="resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.2.4" />
     </ItemGroup>
 
 </Project>

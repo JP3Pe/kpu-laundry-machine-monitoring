@@ -1,4 +1,7 @@
-﻿@{
+﻿@using KpuLandryMachineMonitoring
+@model IEnumerable<KpuLandryMachineMonitoring.Models.UseStateDataModel>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -48,4 +51,10 @@
             <p class="user-time">11:08</p>
         </article>
     </article>
+
+    <h2>MariaDB 결과</h2>
+    @foreach (var data in Model)
+    {
+        <p>Student number: @data.StudentNumber, Machine id: @data.MachineID, Start time: @data.StartTime, End time: @data.EndTime</p>
+    }
 </section>
