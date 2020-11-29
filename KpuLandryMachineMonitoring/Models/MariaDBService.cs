@@ -11,18 +11,17 @@ namespace KpuLandryMachineMonitoring.Models
             ConnectionString = connectionString;
         }
 
-        public string ConnectionString { get; set; }
+        private string ConnectionString { get; }
 
         private MySqlConnection GetConnection()
         {
             return new MySqlConnection(ConnectionString);
         }
 
-
-        public List<UseStateDataModel> GetData()
+        public List<UseState> GetUseStateData()
         {
-            var list = new List<UseStateDataModel>();
-            var sql = "SELECT * FROM use_state ";
+            var resultList = new List<UseState>();
+            const string sql = "SELECT student_number, machine_id, start_time, end_time FROM use_state ";
 
             using var connection = GetConnection();
             connection.Open();
@@ -30,7 +29,7 @@ namespace KpuLandryMachineMonitoring.Models
 
             using var reader = command.ExecuteReader();
             while (reader.Read())
-                list.Add(new UseStateDataModel
+                resultList.Add(new UseState
                 {
                     StudentNumber = Convert.ToInt32(reader["student_number"]),
                     MachineID = Convert.ToInt32(reader["machine_id"]),
@@ -38,7 +37,7 @@ namespace KpuLandryMachineMonitoring.Models
                     EndTime = Convert.ToDateTime(reader["end_time"].ToString())
                 });
 
-            return list;
+            return resultList;
         }
     }
 }

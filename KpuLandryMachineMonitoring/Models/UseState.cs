@@ -2,7 +2,7 @@ using System;
 
 namespace KpuLandryMachineMonitoring.Models
 {
-    public class UseStateDataModel
+    public class UseState
     {
         public int StudentNumber { get; set; }
         public int MachineID { get; set; }

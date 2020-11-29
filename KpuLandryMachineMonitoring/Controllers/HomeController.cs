@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using KpuLandryMachineMonitoring.Models;
+﻿using KpuLandryMachineMonitoring.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KpuLandryMachineMonitoring.Controllers
@@ -8,8 +7,8 @@ namespace KpuLandryMachineMonitoring.Controllers
     {
         public IActionResult Index()
         {
-            MariaDBService context = HttpContext.RequestServices.GetService(typeof(MariaDBService)) as MariaDBService;
-            List<UseStateDataModel> list = context.GetData();
+            var context = HttpContext.RequestServices.GetService(typeof(MariaDBService)) as MariaDBService;
+            var list = context.GetUseStateData();
 
             return View(list);
         }
