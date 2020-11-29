@@ -1,0 +1,1 @@
+INSERT INTO kpu_landry.student (student_number, phone_number, room_number, name, password, password_salt, email) VALUES (2019551008, '01071871279', '334', '김재광', null, null, 'rlaworhkd430@kpu.ac.kr');

@@ -1,0 +1,2 @@
+INSERT INTO kpu_landry.use_state (start_time, end_time, student_number, machine_id) VALUES ('2020-11-29 14:54:08', '2020-11-29 15:42:15', 2019551008, 1);
+INSERT INTO kpu_landry.use_state (start_time, end_time, student_number, machine_id) VALUES ('2020-11-29 18:06:58', '2020-11-29 18:43:01', 2019551008, 2);
