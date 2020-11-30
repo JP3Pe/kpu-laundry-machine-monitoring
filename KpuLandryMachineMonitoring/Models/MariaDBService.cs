@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using MySql.Data.MySqlClient;
 
 namespace KpuLandryMachineMonitoring.Models
@@ -18,26 +19,49 @@ namespace KpuLandryMachineMonitoring.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public List<UseState> GetUseStateData()
+        public dynamic GetUseStateData()
         {
-            var resultList = new List<UseState>();
-            const string sql = "SELECT student_number, machine_id, start_time, end_time FROM use_state ";
+            dynamic useStateModel = new ExpandoObject();
+
+            var studentResultList = new List<Student>();
+            var useStateResultList = new List<UseState>();
+            const string sql = @"
+                SELECT us.student_number, room_number, phone_number, start_time, end_time
+                FROM student
+                    INNER JOIN use_state us on student.student_number = us.student_number
+                    WHERE machine_id in (
+                        SELECT machine_id
+                        FROM laundry_machine
+                        WHERE locate_floor = 3
+                    )
+                ORDER BY machine_id ASC;
+            ";
 
             using var connection = GetConnection();
             connection.Open();
             var command = new MySqlCommand(sql, connection);
-
             using var reader = command.ExecuteReader();
+
             while (reader.Read())
-                resultList.Add(new UseState
+            {
+                studentResultList.Add(new Student
                 {
                     StudentNumber = Convert.ToInt32(reader["student_number"]),
-                    MachineID = Convert.ToInt32(reader["machine_id"]),
-                    StartTime = Convert.ToDateTime(reader["start_time"].ToString()),
-                    EndTime = Convert.ToDateTime(reader["end_time"].ToString())
+                    RoomNumber = reader["room_number"].ToString(),
+                    PhoneNumber = reader["phone_number"].ToString()
                 });
+                useStateResultList.Add(new UseState
+                {
+                    StudentNumber = Convert.ToInt32(reader["student_number"]),
+                    StartTime = Convert.ToDateTime(reader["start_time"]),
+                    EndTime = Convert.ToDateTime(reader["end_time"]),  
+                });
+            }
 
-            return resultList;
+            useStateModel.UseState = useStateResultList;
+            useStateModel.Student = studentResultList;
+
+            return useStateModel;
         }
     }
 }
