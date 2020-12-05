@@ -1,59 +1,33 @@
-﻿@model IEnumerable<KpuLandryMachineMonitoring.Models.UseState>
-
+﻿@model IEnumerable<KpuLandryMachineMonitoring.Models.StudentUseState>
 @{
     ViewData["Title"] = "Home Page";
 }
 
 <section id="user-list">
-    <article class="user">
-        @* 아이콘 삽입 위치 *@
-        <img src="~/images/landry_machine.svg" alt="landry machine image"/>
-        <h2 class="user-name">김철수</h2>
-        <p class="user-room-number">334호</p>
-        <article class="user-phone-number-container">
-            <p class="user-phone-number">010</p>
-            <p class="user-phone-number">7187</p>
-            <p class="user-phone-number">1279</p>
-        </article>
-        <article class="user-time-container">
-            <p class="user-time">10:30</p>
-            <p class="user-time">11:08</p>
-        </article>
-    </article>
-    <article class="user">
-        @* 아이콘 삽입 위치 *@
-        <img src="~/images/landry_machine.svg" alt="landry machine image"/>
-        <h2 class="user-name">이기영</h2>
-        <p class="user-room-number">1334호</p>
-        <article class="user-phone-number-container">
-            <p class="user-phone-number">010</p>
-            <p class="user-phone-number">1234</p>
-            <p class="user-phone-number">1279</p>
-        </article>
-        <article class="user-time-container">
-            <p class="user-time">10:30</p>
-            <p class="user-time">11:08</p>
-        </article>
-    </article>
-    <article class="user">
-        @* 아이콘 삽입 위치 *@
-        <img src="~/images/dryer_machine.svg" alt="dryer machine image"/>
-        <h2 class="user-name">모너미</h2>
-        <p class="user-room-number">904호</p>
-        <article class="user-phone-number-container">
-            <p class="user-phone-number">010</p>
-            <p class="user-phone-number">7187</p>
-            <p class="user-phone-number">9721</p>
-        </article>
-        <article class="user-time-container">
-            <p class="user-time">10:30</p>
-            <p class="user-time">11:08</p>
-        </article>
-    </article>
-
-    <h2>MariaDB 결과</h2>
-    @foreach (var data in Model)
+    @foreach (var studentUseState in Model)
     {
-        <p>Student number: @data.StudentNumber, Machine id: @data.MachineID, Start time: @data.StartTime, End time: @data.EndTime</p>
+        <article class="user">
+            @* 아이콘 삽입 위치 *@
+            @* 건조기 여부 판별 *@
+            @* @if (MariaDBService.IsDryerMachine(studentUseState.MachineID)) *@
+            @* { *@
+            <img src="~/images/landry_machine.svg" alt="landry machine image"/>
+            @* } *@
+            @* else *@
+            @* { *@
+            @* <img src="~/images/dryer_machine.svg" alt="dryer machine image"/> *@
+            @* } *@
+            <h2 class="user-name">@studentUseState.Name</h2>
+            <p class="user-room-number">@(studentUseState.RoomNumber)호</p>
+            <article class="user-phone-number-container">
+                <p class="user-phone-number">@studentUseState.PhoneNumber[0]</p>
+                <p class="user-phone-number">@studentUseState.PhoneNumber[3]</p>
+                <p class="user-phone-number">@studentUseState.PhoneNumber[6]</p>
+            </article>
+            <article class="user-time-container">
+                <p class="user-time">@studentUseState.StartTime</p>
+                <p class="user-time">@studentUseState.EndTime</p>
+            </article>
+        </article>
     }
 </section>

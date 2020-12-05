@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using MySql.Data.MySqlClient;
 
 namespace KpuLandryMachineMonitoring.Models
@@ -21,12 +20,9 @@ namespace KpuLandryMachineMonitoring.Models
 
         public dynamic GetUseStateData()
         {
-            dynamic useStateModel = new ExpandoObject();
-
-            var studentResultList = new List<Student>();
-            var useStateResultList = new List<UseState>();
+            var studentUseStateResultList = new List<StudentUseState>();
             const string sql = @"
-                SELECT us.student_number, room_number, phone_number, start_time, end_time
+                SELECT name, room_number, phone_number, start_time, end_time
                 FROM student
                     INNER JOIN use_state us on student.student_number = us.student_number
                     WHERE machine_id in (
@@ -43,25 +39,41 @@ namespace KpuLandryMachineMonitoring.Models
             using var reader = command.ExecuteReader();
 
             while (reader.Read())
-            {
-                studentResultList.Add(new Student
+                studentUseStateResultList.Add(new StudentUseState
                 {
-                    StudentNumber = Convert.ToInt32(reader["student_number"]),
+                    Name = reader["name"].ToString(),
                     RoomNumber = reader["room_number"].ToString(),
-                    PhoneNumber = reader["phone_number"].ToString()
-                });
-                useStateResultList.Add(new UseState
-                {
-                    StudentNumber = Convert.ToInt32(reader["student_number"]),
+                    PhoneNumber = reader["phone_number"].ToString(),
                     StartTime = Convert.ToDateTime(reader["start_time"]),
-                    EndTime = Convert.ToDateTime(reader["end_time"]),  
+                    EndTime = Convert.ToDateTime(reader["end_time"])
                 });
-            }
 
-            useStateModel.UseState = useStateResultList;
-            useStateModel.Student = studentResultList;
+            return studentUseStateResultList;
+        }
 
-            return useStateModel;
+        // TODO: machine_id가 건조기인지 판별하기
+        public bool IsDryerMachine(int dryerMachineId)
+        {
+            int[] dryerListResult;
+            const string sql = @"SELECT machine_id FROM laundry_machine WHERE machine_type = 'd';";
+            var dryerList = new List<LandryMachine>();
+
+            using var connection = GetConnection();
+            connection.Open();
+
+            var command = new MySqlCommand(sql, connection);
+            using var reader = command.ExecuteReader();
+            while (reader.Read())
+                dryerList.Add(new LandryMachine
+                {
+                    MachineID = Convert.ToInt32(reader["machine_id"])
+                });
+
+            foreach (var landryMachine in dryerList)
+                if (landryMachine.MachineID == dryerMachineId)
+                    return true;
+
+            return false;
         }
     }
 }

@@ -8,9 +8,9 @@ namespace KpuLandryMachineMonitoring.Controllers
         public IActionResult Index()
         {
             var context = HttpContext.RequestServices.GetService(typeof(MariaDBService)) as MariaDBService;
-            var list = context.GetUseStateData();
+            var useStateDataList = context.GetUseStateData();
 
-            return View(list);
+            return View(useStateDataList);
         }
     }
 }
