@@ -1,1 +1,23 @@
-INSERT INTO kpu_landry.student (student_number, phone_number, room_number, name, password, password_salt, email) VALUES (2019551008, '01071871279', '334', '김재광', null, null, 'rlaworhkd430@kpu.ac.kr');
+create table student
+(
+    student_number int         not null
+        primary key,
+    phone_number   char(12)    not null,
+    room_number    varchar(8)  not null,
+    name           varchar(20) not null,
+    password       char(128)   null,
+    password_salt  char(32)    null,
+    email          varchar(60) not null,
+    constraint student_email_uindex
+        unique (email),
+    constraint student_phone_number_uindex
+        unique (phone_number)
+)
+    comment '학생들의 정보를 저장하는 테이블';
+
+INSERT INTO kpu_landry.student (student_number, phone_number, room_number, name, password, password_salt, email)
+VALUES (2019551008, '01071871279', '334', '김재광', null, null, 'rlaworhkd430@kpu.ac.kr');
+INSERT INTO kpu_landry.student (student_number, phone_number, room_number, name, password, password_salt, email)
+VALUES (2019551009, '01071871277', '333', '김철수', null, null, 'rlachulsu@kpu.ac.kr');
+INSERT INTO kpu_landry.student (student_number, phone_number, room_number, name, password, password_salt, email)
+VALUES (2019551010, '01071879721', '332', '김선화', null, null, 'senhoa@kpu.ac.kr');
