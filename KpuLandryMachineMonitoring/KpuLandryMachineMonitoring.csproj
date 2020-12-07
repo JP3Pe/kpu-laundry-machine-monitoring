@@ -12,25 +12,28 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Views\Student" />
       <Folder Include="wwwroot\js" />
       <Folder Include="wwwroot\lib" />
     </ItemGroup>
 
     <ItemGroup>
       <Compile Remove="resources\**" />
+      <Compile Remove="Views\Student\**" />
     </ItemGroup>
 
     <ItemGroup>
       <EmbeddedResource Remove="resources\**" />
+      <EmbeddedResource Remove="Views\Student\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="resources\**" />
+      <None Remove="Views\Student\**" />
     </ItemGroup>
 
     <ItemGroup>
       <Content Remove="resources\**" />
+      <Content Remove="Views\Student\**" />
     </ItemGroup>
 
     <ItemGroup>

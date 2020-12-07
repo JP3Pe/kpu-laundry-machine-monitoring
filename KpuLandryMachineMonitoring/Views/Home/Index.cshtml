@@ -20,9 +20,9 @@
             <h2 class="user-name">@studentUseState.Name</h2>
             <p class="user-room-number">@(studentUseState.RoomNumber)호</p>
             <article class="user-phone-number-container">
-                <p class="user-phone-number">@studentUseState.PhoneNumber[0]</p>
-                <p class="user-phone-number">@studentUseState.PhoneNumber[3]</p>
-                <p class="user-phone-number">@studentUseState.PhoneNumber[6]</p>
+                <p class="user-phone-number">@studentUseState.PhoneNumber.Substring(0, 3)</p>
+                <p class="user-phone-number">@studentUseState.PhoneNumber.Substring(3, 4)</p>
+                <p class="user-phone-number">@studentUseState.PhoneNumber.Substring(7, 4)</p>
             </article>
             <article class="user-time-container">
                 <p class="user-time">@studentUseState.StartTime.ToString("hh:mm")</p>
