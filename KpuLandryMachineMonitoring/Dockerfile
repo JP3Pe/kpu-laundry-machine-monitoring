@@ -1,5 +1,11 @@
-# Tag: mariadb_kpulandry
-FROM mariadb
-MAINTAINER jp3pe <rlaworhkd430430@gmail.com>
-#ADD ./SqlFiles/init.sql /docker-entrypoint-initdb.d
-EXPOSE 3306
+﻿FROM mcr.microsoft.com/dotnet/sdk:latest AS build
+WORKDIR /src
+COPY KpuLandryMachineMonitoring.csproj .
+RUN dotnet restore
+COPY . .
+RUN dotnet publish -c release -o /app
+
+FROM mcr.microsoft.com/dotnet/aspnet:latest
+WORKDIR /app
+COPY --from=build /app .
+ENTRYPOINT ["dotnet", "KpuLandryMachineMonitoring.csproj.dll"]
