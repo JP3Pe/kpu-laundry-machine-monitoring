@@ -9,14 +9,14 @@
         <article class="user">
             @* 아이콘 삽입 위치 *@
             @* 건조기 여부 판별 *@
-            @* @if (MariaDBService.IsDryerMachine(studentUseState.MachineID)) *@
-            @* { *@
-            <img src="~/images/landry_machine.svg" alt="landry machine image"/>
-            @* } *@
-            @* else *@
-            @* { *@
-            @* <img src="~/images/dryer_machine.svg" alt="dryer machine image"/> *@
-            @* } *@
+            @if (studentUseState.MachineID % 3 == 1)
+            {
+                <img src="~/images/dryer_machine.svg" alt="dryer machine image"/>
+            }
+            else
+            {
+                <img src="~/images/landry_machine.svg" alt="landry machine image"/>
+            }
             <h2 class="user-name">@studentUseState.Name</h2>
             <p class="user-room-number">@(studentUseState.RoomNumber)호</p>
             <article class="user-phone-number-container">
