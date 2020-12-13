@@ -18,7 +18,7 @@ namespace KpuLandryMachineMonitoring.Models
             return new MySqlConnection(ConnectionString);
         }
 
-        public dynamic GetUseStateData()
+        public dynamic GetUseStateData(int id)
         {
             var studentUseStateResultList = new List<StudentUseState>();
             const string sql = @"
@@ -28,14 +28,17 @@ namespace KpuLandryMachineMonitoring.Models
                 WHERE machine_id in (
                     SELECT machine_id
                     FROM laundry_machine
-                    WHERE locate_floor = 3
+                    WHERE locate_floor = @Floor
                 )
                 ORDER BY machine_id ASC;
             ";
 
+            var parameter = new MySqlParameter {ParameterName = "@Floor", Value = id};
+
             using var connection = GetConnection();
             connection.Open();
             var command = new MySqlCommand(sql, connection);
+            command.Parameters.Add(parameter);
             using var reader = command.ExecuteReader();
 
             while (reader.Read())
